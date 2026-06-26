@@ -1,0 +1,21 @@
+<header id="navbar">
+    <div class="container">
+        <nav>
+            <a href="/" class="logo">
+                <img src="/images/logo.png" alt="Rynex Security Logo">
+                <span class="logo-text">Rynex Security</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/" class="<%= active === 'Home' ? 'active' : '' %>">Home</a></li>
+                <li><a href="/about" class="<%= active === 'About' ? 'active' : '' %>">About</a></li>
+                <li><a href="/services" class="<%= active === 'Services' ? 'active' : '' %>">Services</a></li>
+                <li><a href="/blog" class="<%= active === 'Blog' ? 'active' : '' %>">Blog</a></li>
+                <li><a href="/contact" class="<%= active === 'Contact' ? 'active' : '' %>">Contact</a></li>
+                <li><a href="/internship" class="<%= active === 'Internship' ? 'active' : '' %>">Internship</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>

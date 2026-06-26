@@ -1,0 +1,122 @@
+<%- include('../partials/head', { title, description, canonicalPath, cssFile, structuredData }) %>
+<body>
+<%- include('../partials/navbar', { active }) %>
+
+<!-- Navbar -->
+    
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg" id="particles-js"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="zoom-in" data-aos-duration="1500">
+                <h1>Rynex Security</h1>
+                <p>Detect . Exploit . Secure</p>
+                <p style="margin-top:15px; font-size:1rem; color:#ccc; font-weight: bold;">
+					Advanced cybersecurity solutions designed to protect, analyze, and strengthen your digital infrastructure against modern threats.
+				</p>
+                <div class="hero-btns">
+                    <a href="/services" class="btn btn-primary">Our Services</a>
+                    <a href="/contact" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="about-preview">
+        <div class="container">
+            <div class="about-flex">
+                <div class="about-text" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="section-title" style="text-align: left;">
+                        <h2>Who We Are</h2>
+                        <div class="underline" style="margin: 0;"></div>
+                    </div>
+                    <p style="text-align: justify;">Rynex Security is a modern cybersecurity company focused on delivering real-world security solutions and hands-on expertise. We bridge the gap between theory and practical implementation.</p>
+                    <p style="text-align: justify;">Our mission is to empower individuals and organizations with advanced offensive and defensive security techniques, ensuring they stay ahead in an evolving threat landscape.</p>
+                    <a href="/about" class="btn btn-outline">Learn More About Us</a>
+                </div>
+                <div class="about-image" data-aos="fade-left" data-aos-duration="1000">
+                    <img src="https://ik.imagekit.io/t4itchmhb/who.png" alt="Rynex Security Operations Center">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview -->
+    <section class="services-preview">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Core Expertise</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="flip-left" data-aos-delay="100">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>VAPT</h3>
+                    <p style="text-align: justify;">Identify vulnerabilities through real-world attack simulations and strengthen your systems against cyber threats.</p>
+                </div>
+                <div class="service-card" data-aos="flip-left" data-aos-delay="300">
+                    <i class="fas fa-user-secret"></i>
+                    <h3>SOC</h3>
+                    <p style="text-align: justify;">Continuous monitoring and rapid response to detect and mitigate security incidents in real time.</p>
+                </div>
+                <div class="service-card" data-aos="flip-left" data-aos-delay="500">
+                    <i class="fas fa-file-contract"></i>
+                    <h3>GRC</h3>
+                    <p style="text-align: justify;">Align your organization with industry standards while managing risks and ensuring compliance.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 60px;" data-aos="fade-up">
+                <a href="/services" class="btn btn-primary">Explore All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Why Rynex Security?</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="why-grid">
+                <div class="why-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Practical Expertise</h3>
+                    <p>We focus on real-world cybersecurity skills, not just theory.</p>
+                </div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Offensive Security Approach</h3>
+                    <p>We think like attackers to defend your systems effectively.</p>
+                </div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Hands-On Learning</h3>
+                    <p>Providing real experience through practical cybersecurity methods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div data-aos="zoom-out" data-aos-duration="1000">
+                <h2>Secure Your Digital Future</h2>
+                <p style="margin-bottom: 40px; font-size: 1.4rem; color: var(--accent);">Take control of your cybersecurity with expert solutions, real-world techniques, and advanced protection strategies.</p>
+                <a href="/contact" class="btn btn-primary">Get Started Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+
+    <!-- Scripts -->
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts', { externalScripts, localScript, contactScript }) %>
+</body>
+</html>

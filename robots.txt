@@ -1,0 +1,293 @@
+# ============================================================================
+# SECURE ROBOTS.TXT FOR RYNEXSECURITY.COM - Cybersecurity Firm
+# ============================================================================
+# This file controls bot access while maximizing SEO and security.
+# Last updated: 2026-06-12
+
+# ============================================================================
+# DEFAULT RULES - All Bots and Crawlers
+# ============================================================================
+User-agent: *
+Allow: /
+Allow: /img/
+Allow: /*.html$
+
+# PRIORITY CONTENT - Explicitly allow high-value pages for faster indexing
+Allow: /index.html
+Allow: /about.html
+Allow: /services.html
+Allow: /contact.html
+Allow: /blog.html
+Allow: /*-cybersecurity-*.html$
+Allow: /*-penetration-test*.html$
+Allow: /*-vulnerability-assessment*.html$
+
+# Block ALL query strings and parameters - prevents duplicate content/attacks
+Disallow: /*?
+Disallow: /*%
+Disallow: /*;
+
+# Block sensitive system directories and files
+Disallow: /admin/
+Disallow: /administrator/
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /user/
+Disallow: /users/
+Disallow: /account/
+Disallow: /accounts/
+Disallow: /private/
+Disallow: /internal/
+Disallow: /confidential/
+
+# Block backup, cache, and temporary files
+Disallow: /backup/
+Disallow: /backups/
+Disallow: /.backup/
+Disallow: /cache/
+Disallow: /.cache/
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /uploads/tmp/
+Disallow: /logs/
+Disallow: /log/
+
+# Block version control and environment files
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.gitignore
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /.env.backup
+Disallow: /.htaccess
+Disallow: /.htpasswd
+Disallow: /.editorconfig
+
+# Block dangerous/sensitive file types
+Disallow: /*.sql
+Disallow: /*.sql.gz
+Disallow: /*.zip
+Disallow: /*.rar
+Disallow: /*.7z
+Disallow: /*.tar
+Disallow: /*.tar.gz
+Disallow: /*.tgz
+Disallow: /*.bak
+Disallow: /*.backup
+Disallow: /*.old
+Disallow: /*.swp
+Disallow: /*.swo
+Disallow: /*.exe
+Disallow: /*.dll
+Disallow: /*.so
+Disallow: /*.jar
+
+# Block common CMS and framework admin panels
+Disallow: /administrator/
+Disallow: /cp/
+Disallow: /controlpanel/
+Disallow: /cPanel/
+Disallow: /admin.php
+Disallow: /phpMyAdmin/
+Disallow: /pma/
+
+# Block dangerous paths often used in attacks
+Disallow: /cgi-bin/
+Disallow: /fcgi-bin/
+Disallow: /bin/
+Disallow: /etc/
+Disallow: /var/
+Disallow: /proc/
+Disallow: /dev/
+Disallow: /sys/
+
+# Block API endpoints that shouldn't be indexed
+Disallow: /api/v*/admin/
+Disallow: /api/*/user/profile
+Disallow: /api/*/auth/
+Disallow: /rest/
+Disallow: /rest-api/
+
+# Block search/filter results and duplicate content
+Disallow: /*search*
+Disallow: /*filter*
+Disallow: /*sort*
+Disallow: /*page=
+Disallow: /*print*
+Disallow: /preview/
+
+# ============================================================================
+# GOOGLE - Premium crawl rates and features
+# ============================================================================
+
+User-agent: Googlebot
+Allow: /
+Allow: /img/
+Allow: /*.html$
+Crawl-delay: 0.5
+Request-rate: 20/1
+
+# Google Image Bot - Allow for image indexing
+User-agent: Googlebot-Image
+Allow: /
+Allow: /img/
+Crawl-delay: 1
+
+# ============================================================================
+# MICROSOFT BING - Premium crawl rates
+# ============================================================================
+
+User-agent: Bingbot
+Allow: /
+Allow: /img/
+Allow: /*.html$
+Crawl-delay: 0.5
+Request-rate: 20/1
+
+User-agent: Adidxbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: BingPreview
+Allow: /
+Crawl-delay: 2
+
+# ============================================================================
+# OTHER LEGITIMATE SEARCH ENGINES
+# ============================================================================
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+Request-rate: 10/1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+Request-rate: 10/1
+
+User-agent: Yandexbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: FacebookExternalHit
+Allow: /
+Crawl-delay: 2
+
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: LinkedInBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: WhatsApp
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slotovod
+Allow: /
+Crawl-delay: 1
+
+# ============================================================================
+# SOCIAL MEDIA & CONTENT PREVIEW CRAWLERS - Allow for rich snippets
+# ============================================================================
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+Allow: /img/
+
+User-agent: AppleBot
+Allow: /
+
+# ============================================================================
+# KNOWN AGGRESSIVE BOTS & SCRAPERS - COMPLETELY BLOCKED
+# ============================================================================
+
+# SEO scrapers and aggressive crawlers
+User-agent: AhrefsBot
+User-agent: AhrefsBot-Site-Audit
+User-agent: SemrushBot
+User-agent: SemrushBot-SA
+User-agent: SemrushBot-CT
+User-agent: DotBot
+User-agent: MJ12bot
+User-agent: DotBot/1.1
+User-agent: MJ12bot/v1.4.8
+User-agent: PetalBot
+User-agent: YisouSpider
+Disallow: /
+
+# Content scrapers and bots
+User-agent: scrapy
+User-agent: python-requests
+User-agent: curl
+User-agent: wget
+User-agent: nikto
+Disallow: /
+
+# ============================================================================
+# CRAWL DELAY & PERFORMANCE RULES
+# ============================================================================
+
+# General crawl delay for unknown bots (1 request per 5 seconds)
+Crawl-delay: 5
+Request-rate: 1/5
+
+# ============================================================================
+# SITEMAP REFERENCES (CRITICAL FOR SEO)
+# ============================================================================
+
+# Main sitemap index
+Sitemap: https://rynexsecurity.com/sitemap.xml
+
+# Content-specific sitemaps (create these for best results)
+Sitemap: https://rynexsecurity.com/sitemap-pages.xml
+Sitemap: https://rynexsecurity.com/sitemap-blog.xml
+Sitemap: https://rynexsecurity.com/sitemap-images.xml
+
+# ============================================================================
+# SEO BEST PRACTICES IMPLEMENTED
+# ============================================================================
+# ✓ Explicit Allow rules guide crawlers to important content
+# ✓ Fast crawl rates for major search engines (Google, Bing)
+# ✓ Social media bot support for rich snippets and preview cards
+# ✓ Multiple sitemaps for comprehensive indexing
+# ✓ Regex patterns ($) to match exact file extensions
+# ✓ Blocks duplicate content through query parameters
+# ✓ Protects sensitive data while maximizing crawlability
+#
+# ADDITIONAL SEO RECOMMENDATIONS:
+# 1. Create sitemaps (XML format) for all content types
+# 2. Implement Open Graph tags in HTML for social sharing
+# 3. Use Schema.org structured data (JSON-LD) for rich snippets
+# 4. Ensure HTTPS, mobile-responsiveness, and fast page speed
+# 5. Build quality backlinks from authoritative sites
+# 6. Create high-quality, keyword-rich content
+# 7. Optimize meta titles and descriptions
+# 8. Implement internal linking strategy
+# 9. Monitor GSC and Bing Webmaster Tools
+# 10. Track rankings and traffic with analytics
+
+# ============================================================================
+# SECURITY NOTES
+# ============================================================================
+# - This robots.txt does NOT provide real security; use .htaccess and server configs
+# - Implement rate limiting at the server/firewall level
+# - Use HTTPS, CSP headers, and WAF for actual protection
+# - Monitor access logs for suspicious patterns
+# - Regularly update to block emerging threats

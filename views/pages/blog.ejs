@@ -1,0 +1,73 @@
+<%- include('../partials/head', { title, description, canonicalPath, cssFile, structuredData }) %>
+<body>
+<%- include('../partials/navbar', { active }) %>
+
+<!-- Navbar -->
+    
+
+
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 data-aos="zoom-out" data-aos-duration="1200">Cyber Brief</h1>
+        </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <main>
+    <section aria-label="Latest cybersecurity insights">
+        <div class="container">
+            <div class="blog-grid">
+                <!-- Featured VA vs PT Guide -->
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="10">
+                    <div class="blog-image">
+                        <img src="https://ik.imagekit.io/t4itchmhb/vapt.png" alt="Security analyst comparing vulnerability assessment and penetration testing results">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">May 30, 2026</span>
+                        <h2>Difference Between Vulnerability Assessment and Penetration Testing</h2>
+                        <p>Compare Vulnerability Assessments and Penetration Testing, understand their different goals, and learn why mature security programs use both.</p>
+                        <a href="/difference-between-vulnerability-assessment-and-penetration-testing" class="btn btn-primary">Read More</a>
+                    </div>
+                </article>
+                <!-- Featured Website Launch Security Guide -->
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="15">
+                    <div class="blog-image">
+                        <img src="https://ik.imagekit.io/t4itchmhb/pt.png" alt="Web application code review before a secure website launch">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">May 30, 2026</span>
+                        <h2>Why Every Company Needs a Penetration Test Before Launching a Website</h2>
+                        <p>Discover how pre-launch penetration testing helps businesses identify web application vulnerabilities before attackers can exploit them.</p>
+                        <a href="/why-every-company-needs-a-penetration-test-before-launching-a-website" class="btn btn-primary">Read More</a>
+                    </div>
+                </article>
+                <!-- Featured Business Strategy Guide -->
+                <article class="blog-card" data-aos="fade-up" data-aos-delay="25">
+                    <div class="blog-image">
+                        <img src="https://ik.imagekit.io/t4itchmhb/bussniess.png" alt="Business leaders discussing cybersecurity strategy">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-date">May 30, 2026</span>
+                        <h2>Why Cybersecurity Should Be Part of Every Business Strategy</h2>
+                        <p>Learn how a strategic cybersecurity program protects revenue, customer trust, regulatory compliance, and long-term business growth.</p>
+                        <a href="/why-cybersecurity-should-be-part-of-every-business-strategy" class="btn btn-primary">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    </main>
+
+            <!-- Footer -->
+    
+
+
+
+    <!-- Scripts -->
+
+<%- include('../partials/footer') %>
+<%- include('../partials/scripts', { externalScripts, localScript, contactScript }) %>
+</body>
+</html>
