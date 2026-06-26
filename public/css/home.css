@@ -2,8 +2,8 @@
         :root {
             --primary: #00d4ff;
             --secondary: #001f3f;
-            --bg-dark: #0a0a0a;
-            --bg-card: #121212;
+            --bg-dark: #121212;
+            --bg-card: #000000;
             --text-light: #e0e0e0;
             --accent: #31a5e9;
             --glow: 0 0 15px rgba(0, 212, 255, 0.6);
@@ -113,29 +113,27 @@
 
         /* Navbar */
         header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            min-height: 74px;
-            opacity: 1;
-            visibility: visible;
-            transform: translateZ(0);
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-            backdrop-filter: blur(15px);
-            transition: var(--transition);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 74px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateZ(0);
+    z-index: 1000;
+    background: #000000;
+    transition: var(--transition);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
 
-        header.scrolled {
-            padding: 5px 0;
-            background: rgba(5, 5, 5, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-        }
+header.scrolled {
+    padding: 5px 0;
+    background: #000000;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
 
         nav {
             display: flex;
@@ -213,7 +211,11 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: radial-gradient(circle at center, rgba(0, 31, 63, 0.4) 0%, rgba(10, 10, 10, 1) 80%);
+            background: linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.97)), url('/images/hero_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             position: relative;
             overflow: hidden;
         }
@@ -284,7 +286,7 @@
 
         /* About Preview */
         .about-preview {
-            background-color: var(--bg-card);
+            background-color: var(--bg-dark);
             position: relative;
         }
 
@@ -330,12 +332,13 @@
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-card);
             padding: 50px 40px;
             border-radius: 20px;
             border: 1px solid rgba(0, 212, 255, 0.1);
             text-align: center;
-            transition: var(--transition);
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
             position: relative;
             overflow: hidden;
         }
@@ -349,7 +352,9 @@
             height: 100%;
             background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
             transform: translateX(-100%);
-            transition: 0.6s;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+            pointer-events: none;
         }
 
         .service-card:hover::before {
@@ -361,6 +366,7 @@
             background: rgba(0, 212, 255, 0.05);
             border-color: var(--primary);
             box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .service-card i {
@@ -390,29 +396,57 @@
         .why-item {
             text-align: center;
             padding: 30px;
-            transition: var(--transition);
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+            pointer-events: none;
+        }
+
+        .why-item:hover::before {
+            transform: translateX(100%);
         }
 
         .why-item:hover {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 15px;
+            transform: translateY(-15px);
+            background: rgba(0, 212, 255, 0.05);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .why-item i {
             font-size: 3rem;
             color: var(--accent);
             margin-bottom: 25px;
-            transition: var(--transition);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
         }
 
         .why-item:hover i {
-            transform: translateY(-10px);
+            transform: scale(1.2) rotate(10deg);
             color: var(--primary);
         }
 
         /* CTA Section */
         .cta-section {
-            background: linear-gradient(rgba(0, 10, 20, 0.85), rgba(0, 10, 20, 0.85)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 10, 20, 0.85), rgba(0, 10, 20, 0.95)), url('/images/cta_bg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -430,7 +464,7 @@
         footer {
             background-color: #050505;
             padding: 100px 0 30px;
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            position: relative;
         }
 
         .footer-grid {
@@ -599,3 +633,4 @@
             .btn { padding: 12px 24px; font-size: 0.85rem; }
         }
     
+

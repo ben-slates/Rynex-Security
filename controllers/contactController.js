@@ -26,14 +26,12 @@ const submitContactForm = async (req, res, next) => {
 
   try {
     const emailResults = await Promise.allSettled([
-      sendContactNotification(data, metadata, {
-        success: true,
-        message: 'Submitted successfully.'
-      }),
+      sendContactNotification(data, metadata),
       sendVisitorConfirmation(data, metadata)
     ]);
 
-    const notificationSent = emailResults[0].status === 'fulfilled';
+    const adminSent = emailResults[0].status === 'fulfilled';
+    const confirmationSent = emailResults[1].status === 'fulfilled';
 
     emailResults.forEach((result, index) => {
       if (result.status === 'rejected') {
@@ -42,8 +40,8 @@ const submitContactForm = async (req, res, next) => {
       }
     });
 
-    if (!notificationSent) {
-      const error = new Error('Message could not be sent through email notification.');
+    if (!adminSent || !confirmationSent) {
+      const error = new Error('Message could not be delivered to all recipients.');
       error.status = 502;
       throw error;
     }

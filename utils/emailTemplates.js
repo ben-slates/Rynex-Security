@@ -4,6 +4,16 @@ const fieldRow = (label, value) => `
     <td style="padding:10px 0;color:#111827;font-weight:600;">${value || 'Not provided'}</td>
   </tr>`;
 
+const resolveBaseUrl = () => {
+  const raw = String(process.env.BASE_URL || '').trim();
+  if (/^https?:\/\//i.test(raw) && !/localhost|127\.0\.0\.1/.test(raw)) {
+    return raw.replace(/\/$/, '');
+  }
+  return 'https://rynexsecurity.com';
+};
+
+const logoSrc = process.env.MAIL_LOGO_URL || `${resolveBaseUrl()}/images/logo.png`;
+
 const buildShell = (preheader, body) => `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +29,7 @@ const buildShell = (preheader, body) => `<!DOCTYPE html>
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width:640px;background:#ffffff;border-radius:12px;overflow:hidden;">
           <tr>
             <td style="background:#000000;padding:30px;text-align:center;">
-              <img src="https://rynexsecurity.com/img/logo.png" width="55" alt="Rynex Security" style="display:inline-block;">
+              <img src="${logoSrc}" width="55" alt="Rynex Security" style="display:inline-block;">
               <h2 style="margin:15px 0 5px;color:#ffffff;">Rynex Security</h2>
               <p style="margin:0;color:#00C2FF;font-size:14px;">Detect . Exploit . Secure</p>
             </td>
@@ -39,7 +49,7 @@ const buildShell = (preheader, body) => `<!DOCTYPE html>
 </body>
 </html>`;
 
-const buildAdminEmail = (data, metadata, web3Result) => buildShell(
+const buildAdminEmail = (data, metadata) => buildShell(
   `New contact form submission from ${data.name}`,
   `<tr>
     <td style="padding:36px;color:#374151;line-height:1.7;">
@@ -47,13 +57,9 @@ const buildAdminEmail = (data, metadata, web3Result) => buildShell(
       <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
         ${fieldRow('Name', data.name)}
         ${fieldRow('Email', data.email)}
-        ${fieldRow('Phone', data.phone)}
-        ${fieldRow('Company', data.company)}
         ${fieldRow('Subject', data.subject)}
         ${fieldRow('Timestamp', metadata.timestamp)}
-        ${fieldRow('IP Address', metadata.ipAddress)}
         ${fieldRow('User Agent', metadata.userAgent)}
-        ${fieldRow('Web3Forms', web3Result?.message || 'Submitted successfully')}
       </table>
       <div style="margin-top:28px;padding:18px;background:#f8fafc;border-left:4px solid #00C2FF;border-radius:6px;">
         <strong style="color:#111827;">Message</strong>

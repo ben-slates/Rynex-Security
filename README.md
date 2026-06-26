@@ -9,7 +9,6 @@ Production-ready Express and EJS migration of the Rynex Security static website.
 - Helmet, compression, Morgan, cookie-parser
 - express-rate-limit and express-validator
 - Multer for multipart form parsing
-- Web3Forms backend submission
 - Nodemailer notification and confirmation emails
 
 ## Setup
@@ -37,7 +36,6 @@ http://localhost:3000
 Create `.env` from `.env.example` and set:
 
 - `BASE_URL`: canonical site URL
-- `WEB3FORMS_ACCESS_KEY`: Web3Forms API key
 - `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`: SMTP credentials
 - `MAIL_FROM`: sender shown on outgoing emails
 - `MAIL_TO`: internal recipient for contact notifications
@@ -65,12 +63,9 @@ The contact form submits to `/api/contact`.
 2. Multer parses browser `FormData`.
 3. express-validator validates and sanitizes all input.
 4. A honeypot field filters basic spam.
-5. The backend submits to Web3Forms using the server-side access key.
-6. Nodemailer sends the admin notification.
-7. Nodemailer sends the visitor confirmation email.
-8. JSON success or error responses are returned to the frontend.
-
-If Web3Forms fails but SMTP is configured, the backend still sends the email notification as a fallback.
+5. Nodemailer sends the admin notification.
+6. Nodemailer sends the visitor confirmation email.
+7. JSON success or error responses are returned to the frontend.
 
 ## SEO
 

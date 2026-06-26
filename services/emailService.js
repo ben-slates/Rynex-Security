@@ -1,7 +1,11 @@
 const nodemailer = require('nodemailer');
 const { buildAdminEmail, buildConfirmationEmail } = require('../utils/emailTemplates');
 
-const createTransporter = () => {
+let _transporter = null;
+
+const getTransporter = () => {
+  if (_transporter) return _transporter;
+
   const required = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS'];
   const missing = required.filter((key) => !process.env[key]);
 
@@ -11,7 +15,7 @@ const createTransporter = () => {
     throw error;
   }
 
-  return nodemailer.createTransport({
+  _transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: Number(process.env.SMTP_PORT || 465),
     secure: String(process.env.SMTP_SECURE || 'true') === 'true',
@@ -20,11 +24,13 @@ const createTransporter = () => {
       pass: process.env.SMTP_PASS
     }
   });
+
+  return _transporter;
 };
 
-const sendContactNotification = async (data, metadata, web3Result) => {
-  const transporter = createTransporter();
-  const mailTo = process.env.MAIL_TO || 'info@rynexsecurity.com';
+const sendContactNotification = async (data, metadata) => {
+  const transporter = getTransporter();
+  const mailTo = process.env.MAIL_TO || 'penetrationtesterofficial@gmail.com';
   const mailFrom = process.env.MAIL_FROM || process.env.SMTP_USER;
 
   return transporter.sendMail({
@@ -32,12 +38,12 @@ const sendContactNotification = async (data, metadata, web3Result) => {
     to: mailTo,
     replyTo: data.email,
     subject: data.subject || `New contact request from ${data.name}`,
-    html: buildAdminEmail(data, metadata, web3Result)
+    html: buildAdminEmail(data, metadata)
   });
 };
 
 const sendVisitorConfirmation = async (data, metadata) => {
-  const transporter = createTransporter();
+  const transporter = getTransporter();
   const mailFrom = process.env.MAIL_FROM || process.env.SMTP_USER;
 
   return transporter.sendMail({

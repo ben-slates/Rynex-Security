@@ -2,8 +2,8 @@
         :root {
             --primary: #00d4ff;
             --secondary: #001f3f;
-            --bg-dark: #0a0a0a;
-            --bg-card: #121212;
+            --bg-dark: #121212;
+            --bg-card: #000000;
             --text-light: #e0e0e0;
             --accent: #00ffcc;
             --glow: 0 0 15px rgba(0, 212, 255, 0.6);
@@ -66,9 +66,7 @@
             visibility: visible;
             transform: translateZ(0);
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-            backdrop-filter: blur(15px);
+            background: #000000;
             transition: var(--transition);
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
@@ -76,7 +74,8 @@
 
         header.scrolled {
             padding: 5px 0;
-            background: rgba(5, 5, 5, 0.95);
+            background: #000000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
         }
 
         nav {
@@ -95,6 +94,7 @@
         .logo img {
             height: 50px;
             filter: none;
+            transition: var(--transition);
         }
 
         .logo-text {
@@ -125,6 +125,7 @@
             height: 2px;
             background-color: var(--primary);
             transition: var(--transition);
+            box-shadow: var(--glow);
         }
 
         .nav-links a:hover::after, .nav-links a.active::after {
@@ -145,7 +146,7 @@
         /* Page Header */
         .page-header {
             padding: 180px 0 100px;
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -219,7 +220,7 @@
 
         /* Mission & Vision */
         .mission-vision {
-            background-color: var(--bg-card);
+            background-color: var(--bg-dark);
         }
 
         .mv-grid {
@@ -229,19 +230,39 @@
         }
 
         .mv-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-card);
             padding: 50px;
             border-radius: 20px;
             border-left: 5px solid var(--primary);
-            transition: var(--transition);
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
             position: relative;
             overflow: hidden;
         }
 
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+            pointer-events: none;
+        }
+
+        .mv-card:hover::before {
+            transform: translateX(100%);
+        }
+
         .mv-card:hover {
+            transform: translateY(-15px);
             background: rgba(0, 212, 255, 0.05);
-            transform: translateX(15px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .mv-card i {
@@ -249,6 +270,12 @@
             color: var(--primary);
             margin-bottom: 25px;
             text-shadow: var(--glow);
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .mv-card:hover i {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .mv-card h3 {
@@ -264,11 +291,39 @@
         .founder-card {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.01);
+            background: var(--bg-card);
             padding: 80px 60px;
             border-radius: 30px;
             position: relative;
             border: 1px solid rgba(0, 212, 255, 0.1);
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+            overflow: hidden;
+        }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+            pointer-events: none;
+        }
+
+        .founder-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-15px);
+            background: rgba(0, 212, 255, 0.05);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .founder-card i.quote-icon {
@@ -277,6 +332,11 @@
             position: absolute;
             top: 30px;
             left: 30px;
+            transition: var(--transition);
+        }
+
+        .founder-card:hover i.quote-icon {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .founder-card p {
@@ -309,12 +369,13 @@
         }
 
         .team-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: var(--bg-card);
             border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
             border: 1px solid rgba(0, 212, 255, 0.1);
-            transition: var(--transition);
+            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
             position: relative;
             overflow: hidden;
         }
@@ -325,20 +386,23 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .team-card:hover {
-            background: rgba(0, 212, 255, 0.05);
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+            pointer-events: none;
         }
 
         .team-card:hover::before {
-            transform: scaleX(1);
+            transform: translateX(100%);
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px);
+            background: rgba(0, 212, 255, 0.05);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .team-img {
@@ -401,7 +465,7 @@
         footer {
             background-color: #050505;
             padding: 100px 0 30px;
-            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            position: relative;
         }
 
         .footer-grid {
@@ -467,69 +531,6 @@
         }
 
         @media (max-width: 768px) {
-            nav {
-                min-height: 72px;
-            }
-
-            .logo {
-                min-width: 0;
-            }
-
-            .logo img {
-                height: 42px;
-                flex-shrink: 0;
-            }
-
-            .logo-text {
-                font-size: 1rem;
-                line-height: 1.2;
-            }
-
-            .nav-links {
-                display: flex;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                gap: 0;
-                max-height: 0;
-                opacity: 0;
-                overflow: hidden;
-                padding: 0 20px;
-                pointer-events: none;
-                text-align: center;
-                transform: translateY(-10px);
-                border-bottom: 1px solid var(--primary);
-                backdrop-filter: blur(20px);
-                box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
-            }
-
-            .nav-links.active {
-                max-height: 340px;
-                opacity: 1;
-                padding: 24px 20px;
-                pointer-events: auto;
-                transform: translateY(0);
-            }
-
-            .nav-links li {
-                width: 100%;
-            }
-
-            .nav-links a {
-                display: block;
-                padding: 13px 0;
-            }
-
-            .hamburger {
-                align-items: center;
-                display: flex;
-                height: 44px;
-                justify-content: center;
-                width: 44px;
-            }
 
             .page-header h1 {
                 font-size: 2.5rem;
@@ -553,3 +554,4 @@
             .about-content { gap: 30px; }
         }
     
+
