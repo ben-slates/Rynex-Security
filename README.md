@@ -97,3 +97,5 @@ utils/
 views/
 app.js
 ```
+## Licence
+©2026 RynexSecurity

@@ -26,19 +26,38 @@ const submitContactForm = async (req, res, next) => {
   };
 
   try {
-    let web3Result;
+    let web3Result = null;
+    let web3Error = null;
 
     try {
       web3Result = await submitToWeb3Forms(data, metadata);
-    } catch (web3Error) {
-      web3Result = {
-        success: false,
-        message: web3Error.message || 'Web3Forms fallback path used.'
-      };
+    } catch (error) {
+      web3Error = error;
+      console.error('Web3Forms submission failed:', error.message);
     }
 
-    await sendContactNotification(data, metadata, web3Result);
-    await sendVisitorConfirmation(data, metadata);
+    const emailResults = await Promise.allSettled([
+      sendContactNotification(data, metadata, web3Result || {
+        success: false,
+        message: web3Error?.message || 'Web3Forms fallback path used.'
+      }),
+      sendVisitorConfirmation(data, metadata)
+    ]);
+
+    const notificationSent = emailResults[0].status === 'fulfilled';
+
+    emailResults.forEach((result, index) => {
+      if (result.status === 'rejected') {
+        const label = index === 0 ? 'Contact notification email' : 'Visitor confirmation email';
+        console.error(`${label} failed:`, result.reason?.message || result.reason);
+      }
+    });
+
+    if (!web3Result?.success && !notificationSent) {
+      const error = new Error('Message could not be sent through Web3Forms or email fallback.');
+      error.status = 502;
+      throw error;
+    }
 
     return res.status(200).json({
       success: true,

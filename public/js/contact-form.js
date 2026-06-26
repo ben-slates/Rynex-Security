@@ -1,39 +1,57 @@
-const backendContactForm = document.getElementById('contactForm');
-const backendFormStatus = document.getElementById('formStatus');
+const form = document.getElementById('contactForm');
 
-if (backendContactForm && backendFormStatus) {
-    backendContactForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+if (form) {
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const formStatus = document.getElementById('formStatus');
 
-        const submitButton = backendContactForm.querySelector('button[type="submit"]');
-        const originalButtonText = submitButton.textContent;
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const originalText = submitBtn.textContent;
+
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        if (formStatus) {
+            formStatus.textContent = '';
+        }
 
         try {
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-            backendFormStatus.textContent = '';
-
             const response = await fetch('/api/contact', {
                 method: 'POST',
                 headers: { 'Accept': 'application/json' },
-                body: new FormData(backendContactForm)
+                body: formData
             });
-            const result = await response.json();
 
-            if (response.ok && result.success) {
-                backendFormStatus.textContent = result.message || 'Message sent successfully. We will contact you shortly.';
-                backendFormStatus.style.color = '#00ffcc';
-                backendContactForm.reset();
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                alert('Success! Your message has been sent.');
+                form.reset();
+
+                if (formStatus) {
+                    formStatus.textContent = data.message || 'Message sent successfully. We will contact you shortly.';
+                    formStatus.style.color = '#00ffcc';
+                }
             } else {
-                backendFormStatus.textContent = result.message || 'Message could not be sent. Please try again.';
-                backendFormStatus.style.color = '#ff6b6b';
+                alert('Error: ' + (data.message || 'Message could not be sent. Please try again.'));
+
+                if (formStatus) {
+                    formStatus.textContent = data.message || 'Message could not be sent. Please try again.';
+                    formStatus.style.color = '#ff6b6b';
+                }
             }
         } catch (error) {
-            backendFormStatus.textContent = 'Network error while sending the message. Please try again.';
-            backendFormStatus.style.color = '#ff6b6b';
+            alert('Something went wrong. Please try again.');
+
+            if (formStatus) {
+                formStatus.textContent = 'Network error while sending the message. Please try again.';
+                formStatus.style.color = '#ff6b6b';
+            }
         } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = originalButtonText;
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
         }
     });
 }

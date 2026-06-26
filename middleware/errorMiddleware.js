@@ -20,6 +20,8 @@ const errorHandler = (err, req, res, next) => {
   const status = err.status || 500;
   const message = status >= 500 ? 'Something went wrong while processing your request.' : err.message;
 
+  console.error(`${req.method} ${req.originalUrl} failed with ${status}:`, err.message);
+
   if (req.accepts('json') && req.path.startsWith('/api/')) {
     return res.status(status).json({ success: false, message });
   }
