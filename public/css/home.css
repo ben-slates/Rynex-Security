@@ -583,30 +583,39 @@ header.scrolled {
                 max-height: 0;
                 opacity: 0;
                 overflow: hidden;
-                padding: 0 20px;
+                padding: 0 24px;
                 pointer-events: none;
                 text-align: center;
-                transform: translateY(-10px);
+                transform: translateY(-16px);
                 border-bottom: 1px solid var(--primary);
                 backdrop-filter: blur(20px);
                 box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+                transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
             }
 
             .nav-links.active {
-                max-height: 340px;
+                max-height: 420px;
                 opacity: 1;
-                padding: 24px 20px;
+                padding: 26px 24px;
                 pointer-events: auto;
                 transform: translateY(0);
             }
 
             .nav-links li {
                 width: 100%;
+                opacity: 0;
+                transform: translateY(-8px);
+                transition: opacity 0.28s ease 0.05s, transform 0.28s ease 0.05s;
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateY(0);
             }
 
             .nav-links a {
                 display: block;
-                padding: 13px 0;
+                padding: 14px 0;
             }
 
             .hamburger {

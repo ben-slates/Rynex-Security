@@ -294,27 +294,58 @@ header.scrolled {
             .logo-text { font-size: 1rem; line-height: 1.2; }
 
             .nav-links {
-                display: flex; position: absolute;
-                top: 100%; left: 0; width: 100%;
+                display: flex;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
                 background: rgba(10, 10, 10, 0.98);
-                flex-direction: column; gap: 0;
-                max-height: 0; opacity: 0; overflow: hidden;
-                padding: 0 20px; pointer-events: none;
-                text-align: center; transform: translateY(-10px);
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                opacity: 0;
+                overflow: hidden;
+                padding: 0 24px;
+                pointer-events: none;
+                text-align: center;
+                transform: translateY(-16px);
                 border-bottom: 1px solid var(--primary);
                 backdrop-filter: blur(20px);
                 box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+                transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
             }
+
             .nav-links.active {
-                max-height: 340px; opacity: 1;
-                padding: 24px 20px; pointer-events: auto;
+                max-height: 420px;
+                opacity: 1;
+                padding: 26px 24px;
+                pointer-events: auto;
                 transform: translateY(0);
             }
-            .nav-links li { width: 100%; }
-            .nav-links a { display: block; padding: 13px 0; }
+
+            .nav-links li {
+                width: 100%;
+                opacity: 0;
+                transform: translateY(-8px);
+                transition: opacity 0.28s ease 0.05s, transform 0.28s ease 0.05s;
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 14px 0;
+            }
+
             .hamburger {
-                display: flex; align-items: center;
-                justify-content: center; width: 44px; height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
+                height: 44px;
             }
 
             .contact-page { padding: 100px 16px 40px; }

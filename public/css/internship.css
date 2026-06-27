@@ -687,7 +687,7 @@
                 max-height: 0;
                 opacity: 0;
                 overflow: hidden;
-                padding: 0 20px;
+                padding: 0 24px;
                 pointer-events: none;
                 text-align: center;
                 transform: translateY(-16px);
@@ -700,7 +700,7 @@
             .nav-links.active {
                 max-height: 420px;
                 opacity: 1;
-                padding: 24px 20px;
+                padding: 26px 24px;
                 pointer-events: auto;
                 transform: translateY(0);
             }
@@ -719,12 +719,14 @@
 
             .nav-links a {
                 display: block;
-                padding: 13px 0;
+                padding: 14px 0;
             }
 
             .hamburger {
-                align-items: center;
                 display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 44px;
                 height: 44px;
                 justify-content: center;
                 width: 44px;
